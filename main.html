@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="js/main.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>fulltext</title>
+</head>
+<body onload="init()">
+<div class="panel panel-default" style="margin-top: 50px;margin-left: 100px;margin-right: 100px;border: 0;">
+    <div class="panel-heading" style="padding:0;color: silver">
+        <div class="btn-group">
+            <!--<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-header"></span></button>-->
+            <button type="button" class="btn btn-default" onclick="setBold()"><span class="glyphicon glyphicon-bold"></span></button>
+            <button type="button" class="btn btn-default" onclick="setItalic()"><span class="glyphicon glyphicon-italic"></span></button>
+            <button type="button" class="btn btn-default" onclick="setUnderline()"><span class="glyphicon glyphicon-magnet"></span></button>
+            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-text-color"></span></button>
+            <button type="button" class="btn btn-default" onclick="insertOrderedList()"><span class="glyphicon glyphicon-list-alt"></span></button>
+            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-th"></span></button>
+            <button type="button" class="btn btn-default" onclick="insertImage()"><span class="glyphicon glyphicon-picture"></span></button>
+            <button type="button" class="btn btn-default" onclick="cut()"><span class="glyphicon glyphicon-scissors"></span></button>
+            <button type="button" class="btn btn-default" onclick="copy()"><span>复制</span></button>
+            <button type="button" class="btn btn-default" onclick="paste()"><span>粘贴</span></button>
+            <button type="button" class="btn btn-default" onclick="myDelete()"><span>删除</span></button>
+            <button type="button" class="btn btn-default" onclick="selectAll()"><span>全选</span></button>
+            <div class="btn-group">
+                <button class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                    <span class="glyphicon glyphicon-align-left"></span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <p style="text-align: center">对齐方式</p>
+                    <li>
+                        <a type="button" class="btn btn-default" onclick="justifyLeft()"><span class="glyphicon glyphicon-align-left">靠左</span></a>
+                    </li>
+                    <li>
+                        <a type="button" class="btn btn-default" onclick="justifyRight()"><span class="glyphicon glyphicon-align-right">靠右</span></a>
+                    </li>
+                    <li>
+                        <a type="button" class="btn btn-default" onclick="justifyCenter()"><span class="glyphicon glyphicon-align-center">居中</span></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="btn-group">
+                <button class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                    <span class="glyphicon glyphicon-header"></span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <p style="text-align: center">设置标题</p>
+                    <li>
+                        <a type="button" class="btn btn-default" onclick="setHeading('H1')"><span>H1</span></a>
+                    </li>
+                    <li>
+                        <a type="button" class="btn btn-default"  onclick="setHeading('H2')"><span>H2</span></a>
+                    </li>
+                    <li>
+                        <a type="button" class="btn btn-default" onclick="setHeading('H3')"><span>H3</span></a>
+                    </li>
+                    <li>
+                        <a type="button" class="btn btn-default"  onclick="setHeading('H4')"><span>H4</span></a>
+                    </li>
+                    <li>
+                        <a type="button" class="btn btn-default"  onclick="setHeading('H5')"><span>H5</span></a>
+                    </li>
+                    <li>
+                        <a type="button" class="btn btn-default" onclick="setHeading('H6')"><span>H6</span></a>
+                    </li>
+                    <li>
+                        <a type="button" class="btn btn-default"  onclick="setHeading('H7')"><span>H7</span></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="btn-group">
+                <button class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                    <span class="glyphicon glyphicon-font"></span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <p style="text-align: center">设置字体</p>
+                    <li>
+                        <a type="button" class="btn btn-default" onclick="setFontName('SimSun')"><span>宋体</span></a>
+                    </li>
+                    <li>
+                        <a type="button" class="btn btn-default"  onclick="setFontName('LiSu')"><span>隶书</span></a>
+                    </li>
+                    <li>
+                        <a type="button" class="btn btn-default"  onclick="setFontName('KaiTi_GB2312')"><span>楷体</span></a>
+                    </li>
+                    <li>
+                        <a type="button" class="btn btn-default" onclick="setFontName('YouYuan')"><span>幼圆</span></a>
+                    </li>
+                    <li>
+                        <a type="button" class="btn btn-default" onclick="setFontName('SimHei')"><span>黑体</span></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="btn-group">
+                <button class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                    <span class="glyphicon glyphicon-text-background"></span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <p style="text-align: center">背景颜色</p>
+                    <li>
+                        <a type="button" class="btn btn-default" style="color:#000000" onclick="setBackColor('#000000')"><span>■■</span></a>
+                    </li>
+                    <li>
+                        <a type="button" class="btn btn-default" style="color:#FF8080" onclick="setBackColor('#FF8080')"><span>■■</span></a>
+                    </li>
+                    <li>
+                        <a type="button" class="btn btn-default" style="color:#FFFF00" onclick="setBackColor('#FFFF00')"><span>■■</span></a>
+                    </li>
+                    <li>
+                        <a type="button" class="btn btn-default" style="color:#80FF00" onclick="setBackColor('#FFFF00')"><span>■■</span></a>
+                    </li>
+                    <li>
+                        <a type="button" class="btn btn-default" style="color:#00FFFF"  onclick="setBackColor('#00FFFF')"><span>■■</span></a>
+                    </li>
+                    <li>
+                        <a type="button" class="btn btn-default" style="color:#0000FF" onclick="setBackColor('#0000FF')"><span>■■</span></a>
+                    </li>
+                    <li>
+                        <a type="button" class="btn btn-default" style="color:#FF00FF" onclick="setBackColor('#FF00FF')"><span>■■</span></a>
+                    </li>
+                </ul>
+            </div>
+            </button>
+            <div class="btn-group">
+                <button class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                    <span class="glyphicon glyphicon-text-size"></span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <p style="text-align: center">字体大小</p>
+                    <li>
+                        <a type="button" class="btn btn-default" onclick="setFontsize('1')"><span>1</span></a>
+                    </li>
+                    <li>
+                        <a type="button" class="btn btn-default" onclick="setFontsize('2')"><span>2</span></a>
+                    </li>
+                    <li>
+                        <a type="button" class="btn btn-default" onclick="setFontsize('3')"><span>3</span></a>
+                    </li>
+                    <li>
+                        <a type="button" class="btn btn-default" onclick="setFontsize('4')"><span>4</span></a>
+                    </li>
+                    <li>
+                        <a type="button" class="btn btn-default" onclick="setFontsize('5')"><span>5</span></a>
+                    </li>
+                    <li>
+                        <a type="button" class="btn btn-default"  onclick="setFontsize('6')"><span>6</span></a>
+                    </li>
+                    <li>
+                        <a type="button" class="btn btn-default"  onclick="setFontsize('7')"><span>7</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body" style="padding: 0;">
+            <iframe id="editor" style="width: 100%;height: 450px" >
+
+            </iframe>
+    </div>
+</div>
+</body>
+</html>
